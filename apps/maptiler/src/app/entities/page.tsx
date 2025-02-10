@@ -6,10 +6,12 @@ import { CreateEntityButton } from "@/components/entities/CreateEntityButton";
 
 type SearchParams = Promise<{ offset: string; limit: string }>;
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
-	const { offset, limit } = await searchParams;
-	const limitNum = Number(limit ?? 5);
-	const entities = await getEntities(limitNum, Number(offset ?? 0));
+	const allSearchParams = await searchParams;
+	const limitNum = Number(allSearchParams.limit ?? 5);
+	const entities = await getEntities(limitNum, Number(allSearchParams.offset ?? 0));
 
 	return (
 		<Stack>
@@ -24,7 +26,10 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
 			<EntitiesTable
 				initialData={entities}
-				limit={limitNum}
+				searchParams={{
+					...allSearchParams,
+					limit: limitNum.toString(),
+				}}
 			/>
 		</Stack>
 	);

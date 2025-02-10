@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
 	Table,
 	TableBody,
@@ -18,15 +18,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useStore } from "@tanstack/react-store";
 import { entityStore, setEntityListAction } from "@/store/entity";
 import { EntitiesResponse } from "@/queries/server/entityQueries";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Props {
 	initialData: EntitiesResponse["allEntities"];
-	limit: number;
+	searchParams: { limit: string, offset: string };
 }
 
-export function EntitiesTable({ initialData, limit }: Props) {
-	const searchParams = useSearchParams();
+export function EntitiesTable({ initialData, searchParams }: Props) {
+	const [loaded, setLoaded] = useState(false);
 	const entityList = useStore(entityStore, (state) => state.entityList);
 	const router = useRouter();
 
@@ -34,17 +34,24 @@ export function EntitiesTable({ initialData, limit }: Props) {
 		setEntityListAction(initialData.entities);
 	}, [initialData]);
 
-  const handlePageChange = (_: any, newPage: number) => {
-    const newOffset = (newPage - 1) * limit;
+	useEffect(() => {
+		setLoaded(true);
+	}, []);
 
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("page", newPage.toString());
-    newParams.set("offset", newOffset.toString());
-    newParams.set("limit", limit.toString());
+	const handlePageChange = (_: any, newPage: number) => {
+		const newOffset = (newPage - 1) * Number(searchParams.limit);
 
-    router.push(`?${newParams.toString()}`);
-};
+		const newParams = new URLSearchParams(searchParams.toString());
+		newParams.set("page", newPage.toString());
+		newParams.set("offset", newOffset.toString());
+		newParams.set("limit", searchParams.limit);
 
+		router.push(`?${newParams.toString()}`);
+	};
+
+	if (!loaded) {
+		return null;
+	}
 
 	return (
 		<>
