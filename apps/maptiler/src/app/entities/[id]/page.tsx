@@ -3,16 +3,13 @@ import { getEntity } from "@/queries/server/entityQueries";
 import { Stack } from "@mui/material";
 import { redirect } from "next/navigation";
 
-interface PageProps {
-	params: Promise<{ id: string }>;
-}
+type Params = Promise<{ id: string }>;
 
-export default async function EntityPage(props: Promise<PageProps>) {
-	const { params } = await props;
-	const awaitedParams = await params;
+export default async function EntityPage({ params }: { params: Params }) {
+    const { id } = await params;
 	const entity = await (async () => {
 		try {
-			return await getEntity(awaitedParams.id);
+			return await getEntity(id);
 		} catch (e) {
 			console.log(e);
 		}

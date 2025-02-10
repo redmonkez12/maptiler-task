@@ -51,7 +51,7 @@ export function CreateEntityDialog() {
 
 		toggleCreateDialogAction();
 
-		router.refresh("/entities");
+		router.refresh();
 
 		showSnackbar("Entity was created");
 	}
