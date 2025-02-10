@@ -11,11 +11,6 @@
 			"inputs": ["src/**"],
 			"outputLogs": "new-only"
 		},
-		"test": {
-			"dependsOn": ["^test"],
-			"inputs": ["src/**"],
-			"outputLogs": "new-only"
-		},
 		"typecheck": {
 			"dependsOn": ["^typecheck"],
 			"inputs": ["src/**"],
@@ -23,7 +18,7 @@
 		},
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["dist/**"],
+			"outputs": [".next/**", "!.next/cache/**"],
 			"inputs": ["src/**"],
 			"outputLogs": "new-only"
 		},

@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -c production -- turbo run dev --parallel --no-daemon",
-		"typecheck": "turbo run typecheck --no-daemon",
-		"lint": "turbo run lint --no-daemon",
-		"lint:fix": "turbo run lint:fix --no-daemon",
-		"build": "dotenv -- turbo run build --force --no-daemon",
-		"preview": "dotenv -c development -- turbo run preview --parallel --no-daemon"
+	"typecheck": "turbo run typecheck --no-daemon",
+	"lint": "turbo run lint --no-daemon",
+	"lint:fix": "turbo run lint:fix --no-daemon",
+	"build": "dotenv -- turbo run build --force --no-daemon",
+	"preview": "dotenv -c development -- turbo run preview --parallel --no-daemon"
 
   },
   "devDependencies": {
