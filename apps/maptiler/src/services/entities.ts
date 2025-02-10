@@ -1,11 +1,9 @@
 import { db } from "@/utils/db";
-import { Entity } from "@prisma/client";
 import { createId } from "@paralleldrive/cuid2";
 import { getStatus } from "./status";
 import { badRequest, internalServerError, notFound } from "@/errors";
-import { CreateEntitySchema } from "@/app/schemas/CreateEntitySchema";
 import { z } from "zod";
-import { entityMutations } from "@/graphql/entities/mutations";
+import { CreateEntitySchema } from "@maptiler/common";
 
 export interface CreateEntity {
 	name: string;
@@ -31,7 +29,7 @@ export async function findAllEntities({ limit, offset }: Pagination) {
             entities,
             count,
         };
-	} catch (e) {
+	} catch {
 		throw internalServerError();
 	}
 }

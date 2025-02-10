@@ -1,9 +1,0 @@
-$ eslint src --fix
-
-D:\projects\maptiler-task\apps\maptiler\src\services\entities.ts
-   2:10  warning  'Entity' is defined but never used. Allowed unused vars must match /^_/u           @typescript-eslint/no-unused-vars
-   8:10  warning  'entityMutations' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
-  34:11  warning  'e' is defined but never used. Allowed unused caught errors must match /^_/u       @typescript-eslint/no-unused-vars
-
-✖ 3 problems (0 errors, 3 warnings)
-
