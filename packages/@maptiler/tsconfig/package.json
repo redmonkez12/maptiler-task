@@ -1,0 +1,13 @@
+{
+	"version": "0.5.0",
+	"name": "@maptiler/tsconfig",
+	"description": "Common tsconfig.",
+	"license": "MIT",
+	"files": [
+		"common.json"
+	],
+	"dependencies": {
+		"@total-typescript/ts-reset": "^0.6.1"
+	}
+}
+
