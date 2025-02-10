@@ -19,7 +19,6 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": [".next/**", "!.next/cache/**"],
-			"inputs": ["src/**"],
 			"outputLogs": "new-only"
 		},
 		"preview": {
