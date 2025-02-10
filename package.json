@@ -3,25 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.6"
+    "dev": "dotenv -c production -- turbo run dev --parallel --no-daemon",
+		"typecheck": "turbo run typecheck --no-daemon",
+		"lint": "turbo run lint --no-daemon",
+		"lint:fix": "turbo run lint:fix --no-daemon",
+		"build": "dotenv -- turbo run build --force --no-daemon",
+		"preview": "dotenv -c development -- turbo run preview --parallel --no-daemon"
+
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
-  }
+    "@types/node": "^22.13.1",
+		"dotenv-cli": "^8.0.0",
+		"prettier": "^3.5.0",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"@types/bun": "^1.2.2",
+		"turbo": "^2.4.0"
+
+  },
+  "workspaces": [
+		"apps/*",
+		"packages/**/*"
+	],
+  "packageManager": "bun@1.2.2",
+	"dependencies": {
+		"bun-types": "^1.1.43"
+	}
 }
