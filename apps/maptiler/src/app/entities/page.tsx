@@ -6,7 +6,7 @@ import { CreateEntityButton } from "@/components/entities/CreateEntityButton";
 
 type SearchParams = Promise<{ offset: string; limit: string }>;
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
 	const allSearchParams = await searchParams;

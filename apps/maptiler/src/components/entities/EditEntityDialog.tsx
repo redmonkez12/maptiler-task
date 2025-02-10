@@ -39,7 +39,7 @@ export function EditEntityDialog() {
 		},
 	});
 
-	const { control, formState, setValue } = formMethods;
+	const { control, formState, setValue, reset } = formMethods;
 
     useEffect(() => {
         setValue("name", entity?.name ?? "");
@@ -60,6 +60,14 @@ export function EditEntityDialog() {
 		toggleEditDialogAction();
 
 		showSnackbar("Entity was edited");
+	}
+
+	function onCancel() {
+		reset({
+			name: entity?.name ?? "",
+			status: entity?.status?.id ?? "",
+		});
+		toggleEditDialogAction();
 	}
 
 	return (
@@ -120,7 +128,7 @@ export function EditEntityDialog() {
 					direction={{ xs: "row" }}>
 					<Button
 						disabled={loading}
-						onClick={toggleEditDialogAction}
+						onClick={onCancel}
 						sx={{
 							width: { xs: "100%" },
 						}}

@@ -39,7 +39,7 @@ export function CreateEntityDialog() {
 		},
 	});
 
-	const { control, formState } = formMethods;
+	const { control, formState, reset } = formMethods;
 
 	function onSubmit(values: z.infer<typeof CreateEntitySchema>) {
 		createEntity({
@@ -54,6 +54,11 @@ export function CreateEntityDialog() {
 		router.refresh();
 
 		showSnackbar("Entity was created");
+	}
+
+	function onCancel() {
+		reset();
+		toggleCreateDialogAction();
 	}
 
 	return (
@@ -114,7 +119,7 @@ export function CreateEntityDialog() {
 					direction={{ xs: "row" }}>
 					<Button
 						disabled={loading}
-						onClick={toggleCreateDialogAction}
+						onClick={onCancel}
 						sx={{
 							width: { xs: "100%" },
 						}}
